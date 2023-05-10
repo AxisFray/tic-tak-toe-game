@@ -10,16 +10,20 @@ import time
 #├───┼───┼───┼───┼───┼───┼───┼───┼───┤
 #└───┴───┴───┴───┴───┴───┴───┴───┴───┘
 EndGame = 0
-x = [0,1,2,3,4,5,6,7,8] 
+x = [1,2,3,4,5,6,7,8,9]
 clicks = 1
+ 
+
 
 def Xwin():
     os.system('cls')
+    Board()
     print("Wygral X")
     time.sleep(2)
     sys.exit()
 def Owin():
     os.system('cls')
+    Board()
     print("Wygral O")
     time.sleep(2)
     sys.exit()
@@ -34,14 +38,28 @@ def Board():
     print("│",x[6],"│",x[7],"│",x[8],"│")
     print("└───┴───┴───┘")
 
+'''
 def SetPos(num):
     global clicks,i,j
+    
     for i in x: 
         if i == num:
           if clicks % 2 == 0:
               x[i] = "X"
           else: x[i] = "O"
     clicks +=1
+                '''
+                
+def SetPos(num):
+    global clicks
+    indeks = num - 1
+    if clicks % 2 == 0:
+        x[indeks] = "X"
+    else: x[indeks] = "O"
+    clicks += 1
+
+
+
               
 def WinCheck():
     if x[0]== "O" and x[4]== "O" and x[8] == "O": #skos1
@@ -85,9 +103,9 @@ def Game():
         num = int(input("podaj ruch"))
         SetPos(num)
         if WinCheck() == 2:
-            Xwin()
+                Xwin()
         elif WinCheck() == 1:
-            Owin()
+                Owin()
         p+=1
     sys.exit()
 Game()
